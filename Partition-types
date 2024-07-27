@@ -1,0 +1,108 @@
+0700 Microsoft basic data                0701 Microsoft Storage Replica         
+0702 ArcaOS Type 1                       0c01 Microsoft reserved                
+2700 Windows RE                          3000 ONIE boot                         
+3001 ONIE config                         3900 Plan 9                            
+4100 PowerPC PReP boot                   4200 Windows LDM data                  
+4201 Windows LDM metadata                4202 Windows Storage Spaces            
+7501 IBM GPFS                            7f00 ChromeOS kernel                   
+7f01 ChromeOS root                       7f02 ChromeOS reserved                 
+8200 Linux swap                          8300 Linux filesystem                  
+8301 Linux reserved                      8302 Linux /home                       
+8303 Linux x86 root (/)                  8304 Linux x86-64 root (/)             
+8305 Linux ARM64 root (/)                8306 Linux /srv                        
+8307 Linux ARM32 root (/)                8308 Linux dm-crypt                    
+8309 Linux LUKS                          830a Linux IA-64 root (/)              
+830b Linux x86 root verity               830c Linux x86-64 root verity          
+830d Linux ARM32 root verity             830e Linux ARM64 root verity           
+830f Linux IA-64 root verity             8310 Linux /var                        
+8311 Linux /var/tmp                      8312 Linux user's home                 
+8313 Linux x86 /usr                      8314 Linux x86-64 /usr                 
+8315 Linux ARM32 /usr                    8316 Linux ARM64 /usr                  
+8317 Linux IA-64 /usr                    8318 Linux x86 /usr verity   
+
+8319 Linux x86-64 /usr verity            831a Linux ARM32 /usr verity           
+831b Linux ARM64 /usr verity             831c Linux IA-64 /usr verity           
+8400 Intel Rapid Start                   8401 SPDK block device                 
+8500 Container Linux /usr                8501 Container Linux resizable rootfs  
+8502 Container Linux /OEM customization  8503 Container Linux root on RAID      
+8e00 Linux LVM                           a000 Android bootloader                
+a001 Android bootloader 2                a002 Android boot 1                    
+a003 Android recovery 1                  a004 Android misc                      
+a005 Android metadata                    a006 Android system 1                  
+a007 Android cache                       a008 Android data                      
+a009 Android persistent                  a00a Android factory                   
+a00b Android fastboot/tertiary           a00c Android OEM                       
+a00d Android vendor                      a00e Android config                    
+a00f Android factory (alt)               a010 Android meta                      
+a011 Android EXT                         a012 Android SBL1                      
+a013 Android SBL2                        a014 Android SBL3                      
+a015 Android APPSBL                      a016 Android QSEE/tz                   
+a017 Android QHEE/hyp                    a018 Android RPM                       
+a019 Android WDOG debug/sdi              a01a Android DDR                       
+a01b Android CDT                         a01c Android RAM dump                  
+a01d Android SEC                         a01e Android PMIC 
+
+a01f Android misc 1                      a020 Android misc 2                    
+a021 Android device info                 a022 Android APDP                      
+a023 Android MSADP                       a024 Android DPO                       
+a025 Android recovery 2                  a026 Android persist                   
+a027 Android modem ST1                   a028 Android modem ST2                 
+a029 Android FSC                         a02a Android FSG 1                     
+a02b Android FSG 2                       a02c Android SSD                       
+a02d Android keystore                    a02e Android encrypt                   
+a02f Android EKSST                       a030 Android RCT                       
+a031 Android spare1                      a032 Android spare2                    
+a033 Android spare3                      a034 Android spare4                    
+a035 Android raw resources               a036 Android boot 2                    
+a037 Android FOTA                        a038 Android system 2                  
+a039 Android cache                       a03a Android user data                 
+a03b LG (Android) advanced flasher       a03c Android PG1FS                     
+a03d Android PG2FS                       a03e Android board info                
+a03f Android MFG                         a040 Android limits                    
+a200 Atari TOS basic data                a500 FreeBSD disklabel                 
+a501 FreeBSD boot                        a502 FreeBSD swap                      
+a503 FreeBSD UFS                         a504 FreeBSD ZFS                       
+a505 FreeBSD Vinum/RAID                  a580 Midnight BSD data   
+
+a581 Midnight BSD boot                   a582 Midnight BSD swap                 
+a583 Midnight BSD UFS                    a584 Midnight BSD ZFS                  
+a585 Midnight BSD Vinum                  a600 OpenBSD disklabel                 
+a800 Apple UFS                           a901 NetBSD swap                       
+a902 NetBSD FFS                          a903 NetBSD LFS                        
+a904 NetBSD concatenated                 a905 NetBSD encrypted                  
+a906 NetBSD RAID                         ab00 Recovery HD                       
+af00 Apple HFS/HFS+                      af01 Apple RAID                        
+af02 Apple RAID offline                  af03 Apple label                       
+af04 AppleTV recovery                    af05 Apple Core Storage                
+af06 Apple SoftRAID Status               af07 Apple SoftRAID Scratch            
+af08 Apple SoftRAID Volume               af09 Apple SoftRAID Cache              
+af0a Apple APFS                          b300 QNX6 Power-Safe                   
+bb00 Barebox boot loader                 bc00 Acronis Secure Zone               
+be00 Solaris boot                        bf00 Solaris root                      
+bf01 Solaris /usr & Mac ZFS              bf02 Solaris swap                      
+bf03 Solaris backup                      bf04 Solaris /var                      
+bf05 Solaris /home                       bf06 Solaris alternate sector          
+bf07 Solaris Reserved 1                  bf08 Solaris Reserved 2                
+bf09 Solaris Reserved 3                  bf0a Solaris Reserved 4                
+bf0b Solaris Reserved 5                  c001 HP-UX data  
+
+c002 HP-UX service                       e100 ONIE boot                         
+e101 ONIE config                         e900 Veracrypt data                    
+ea00 XBOOTLDR partition                  eb00 Haiku BFS                         
+ed00 Sony system partition               ed01 Lenovo system partition           
+ef00 EFI system partition                ef01 MBR partition scheme              
+ef02 BIOS boot partition                 f800 Ceph OSD                          
+f801 Ceph dm-crypt OSD                   f802 Ceph journal                      
+f803 Ceph dm-crypt journal               f804 Ceph disk in creation             
+f805 Ceph dm-crypt disk in creation      f806 Ceph block                        
+f807 Ceph block DB                       f808 Ceph block write-ahead log        
+f809 Ceph lockbox for dm-crypt keys      f80a Ceph multipath OSD                
+f80b Ceph multipath journal              f80c Ceph multipath block 1            
+f80d Ceph multipath block 2              f80e Ceph multipath block DB           
+f80f Ceph multipath block write-ahead l  f810 Ceph dm-crypt block               
+f811 Ceph dm-crypt block DB              f812 Ceph dm-crypt block write-ahead lo
+f813 Ceph dm-crypt LUKS journal          f814 Ceph dm-crypt LUKS block          
+f815 Ceph dm-crypt LUKS block DB         f816 Ceph dm-crypt LUKS block write-ahe
+f817 Ceph dm-crypt LUKS OSD              fb00 VMWare VMFS                       
+fb01 VMWare reserved                     fc00 VMWare kcore crash protection     
+fd00 Linux RAID   
