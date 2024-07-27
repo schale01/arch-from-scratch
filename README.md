@@ -153,9 +153,9 @@ BTRFS on root
 ```
 $ mkfs.btrfs -f /dev/mapper/fwork_system
 ```
-##########################
-Installing Linux Mint 22
-##########################
+
+
+## Installing Linux Mint 22
 
 Boot from the Linux Mint 22 Live USB
 Open a terminal and copy-paste the following commands:
@@ -300,9 +300,8 @@ You will be prompted to unlock the system partition when it boots.
 This indicates that the previous steps were successful
 
 
-#########################
-Install the Boot Manager
-#########################
+## Install the Boot Manager
+
 Install the rEFInd boot manager from PPA or by downloading the DEB file.
 ```
 sudo apt-add-repository ppa:rodsmith/refind
@@ -333,11 +332,7 @@ It also displays boot icons for every kernel it finds on the boot partitions, an
 
 
 
-
-
-###############################
-Installing Arch
-##############################
+## Installing Arch
 
 Create subvolume for arch installation
 
