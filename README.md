@@ -118,7 +118,7 @@ Note: PARTLABEL is displayed as Name in GParted
 Run the following commands to format system partition. Copy-paste the entire block of commands in a terminal window and hit Enter.
 
 sudo cryptsetup luksFormat /dev/disk/by-partlabel/fwork_system 
-sudo cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system   //This will unlock the LUKS partition and map it to /dev/mapper/xps_system
+sudo cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system   //This will unlock the LUKS partition and map it to /dev/mapper/fwork_system
 
 
 ## Filesystems
@@ -160,7 +160,7 @@ Installing Linux Mint 22
 Boot from the Linux Mint 22 Live USB
 Open a terminal and copy-paste the following commands:
 ```
-$ sudo cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system  //This will unlock the LUKS partition and map it to /dev/mapper/xps_system
+$ sudo cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system  //This will unlock the LUKS partition and map it to /dev/mapper/fwork_system
 
 ```
 
@@ -203,12 +203,12 @@ Mount system devices — Mount the devices for /, /home, /boot and /boot/efi und
 
 ```
 /////////////////
-distname=xenial && \
+distname=mint && \
 sudo mkdir -p /mnt/${distname} && \
-sudo mount /dev/mapper/xps_system -o subvol=@${distname}      /mnt/${distname}  && \
-sudo mount /dev/mapper/xps_system -o subvol=@${distname}_home /mnt/${distname}/home && \
-mp=/mnt/${distname}/boot     && sudo mkdir -p ${mp} && sudo mount /dev/disk/by-partlabel/xps_boot_${distname} ${mp} && \
-mp=/mnt/${distname}/boot/efi && sudo mkdir -p ${mp} && sudo mount /dev/disk/by-partlabel/xps_efi ${mp}
+sudo mount /dev/mapper/fwork_system -o subvol=@${distname}      /mnt/${distname}  && \
+sudo mount /dev/mapper/fwork_system -o subvol=@${distname}_home /mnt/${distname}/home && \
+mp=/mnt/${distname}/boot     && sudo mkdir -p ${mp} && sudo mount /dev/disk/by-partlabel/fwork_boot_${distname} ${mp} && \
+mp=/mnt/${distname}/boot/efi && sudo mkdir -p ${mp} && sudo mount /dev/disk/by-partlabel/fwork_efi ${mp}
 ////////////////
 
 # mkdir -p /mnt/mint
@@ -236,7 +236,7 @@ Update Initramfs Settings — Run the following block of commands. It will updat
 ****Run in Chrooted terminal
 
 ```
-# echo 'CRYPTROOT=target=xps_system,source=/dev/disk/by-partlabel/xps_system' >> /etc/initramfs-tools/conf.d/cryptroot && \
+# echo 'CRYPTROOT=target=fwork_system,source=/dev/disk/by-partlabel/fwork_system' >> /etc/initramfs-tools/conf.d/cryptroot && \
 # echo 'export CRYPTSETUP=y' > /etc/initramfs-tools/conf.d/cryptsetup && \
 # echo "CRYPTSETUP=y" >> /usr/share/initramfs-tools/conf-hooks.d/cryptsetup && \
 # echo "CRYPTSETUP=y" >> /usr/share/initramfs-tools/conf-hooks.d/forcecryptsetup
