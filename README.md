@@ -345,6 +345,14 @@ $ btrfs subvolume create /mnt/btrfs/@arch
 $ btrfs subvolume create /mnt/btrfs/@arch_home
 ```
 
+remounting the arch partition after reboots if needed 
+```
+# cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system 
+# mount -o subvol=@arch /dev/mapper/fwork_system /mnt/arch
+# mount -o subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home
+
+```
+
 
 
 BTRFS on home if exists
