@@ -110,7 +110,7 @@ Labels can be changed in gedit with c option
 
 Labelling — Label partitions as shown in screenshot. Set both LABEL and PARTLABEL to same value. This makes it easy to identify the partitions and we will be using it later to create scripts for some common tasks. Keep a one-word lowercase name for each distribution that you wish to install (like “xenial”, “ubuntu”, “mint”, etc) and use it everywhere while labelling partitions. This will make it very easy to manage the systems once we are done installing them.
 
-Note: PARTLABEL is displayed as Name in GParted
+> Note: PARTLABEL is displayed as Name in GParted
 
 
 ## LUKS Setup
@@ -262,12 +262,9 @@ Update fstab file— Edit /etc/fstab file and change the subvolume name.
 /dev/disk/by-partlabel/fwork_boot_mint	/boot		  ext4	defaults,noatime			              0	2
 /dev/disk/by-partlabel/fwork_efi		    /boot/efi	vfat	defaults                            0 2
 ```
-  Note: I replaced the UUID device names with /dev/disk/by-partlabel/<partlabel> syntax. 
-  It’s easier to remember and you are less likely to make mistakes.
+> Note: I replaced the UUID device names with /dev/disk/by-partlabel/<partlabel> syntax. It’s easier to remember and you are less likely to make mistakes.
   
-  Note: Columns in fstab file can be separated by spaces, tabs or a combination of both. 
-  Line up the columns so that they are easier to read.
-
+> Note: Columns in fstab file can be separated by spaces, tabs or a combination of both. Line up the columns so that they are easier to read.
 
 ##Create crypttab file—Create a new /etc/crypttab file as you are not likely to have one.
 ```
@@ -288,7 +285,7 @@ Run the following commands:
 # update-grub
 # grub-install --target=x86_64-efi --efi-directory=/boot/efi /dev/nvme0n1
 ```
-  Note: This will regenerate the initramfs, update the grub menu, and re-install GRUB to /dev/sda
+> Note: This will regenerate the initramfs, update the grub menu, and re-install GRUB to /dev/sda
 
 Exit the chroot session by typing exit in the terminal
 
@@ -314,12 +311,9 @@ Once this file has been created, we no longer need the GRUB version installed on
 # cd /boot
 # grub-mkimage -o core.efi --format=x86_64-efi '--prefix=(hd0,gpt2)/grub' ext2 part_gpt
 ```
-  Note: Change the GPT partition number --prefix=(hd0,gpt2) to match the boot partition number. 
-  In this case, the boot partition is /dev/sda2 which is GPT partition 2.
+> Note: Change the GPT partition number --prefix=(hd0,gpt2) to match the boot partition number. In this case, the boot partition is /dev/sda2 which is GPT partition 2.
   
-  Note: This file must be generated after booting to the installed system using GRUB. 
-  If you generate this from a chrooted session or from another system, then you will get an error “error: symbol table not found” while booting the system. 
-  This error is harmless and you can continue booting by pressing Enter.
+> Note: This file must be generated after booting to the installed system using GRUB. If you generate this from a chrooted session or from another system, then you will get an error “error: symbol table not found” while booting the system. This error is harmless and you can continue booting by pressing Enter.
 
 ##Configure the Boot Manager
 Reboot the system.
