@@ -175,7 +175,7 @@ and /dev/nvme0n1p2 as the boot device (/boot).
   This does not lock the LUKS device that we unlocked in previous step.
 
   Note: The partition selected for mounting /boot will depend on the distribution you are installing. 
-  I had labelled the /dev/nvme0n1p2 partition as xps_boot_mint so I will use the same one while installing Linux Mint.
+  I had labelled the /dev/nvme0n1p2 partition as fwork_boot_mint so I will use the same one while installing Linux Mint.
 
 Select /dev/nvme0n1 for installing the GRUB bootloader.
 
