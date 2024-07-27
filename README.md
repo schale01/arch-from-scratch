@@ -164,12 +164,12 @@ $ sudo cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system  //T
 
 ```
 
-Start the Ubuntu installer and select custom partitioning. 
+Start the Linux Mint installer and select custom partitioning. 
 Select /dev/mapper/fwork_system as the root device (/) 
 and /dev/nvme0n1p2 as the boot device (/boot).
 
-  Note: Make sure that the partitions are NOT marked for formatting. 
-  Ignore any warnings displayed by installer for formatting the partitions.
+> Note: Make sure that the partitions are NOT marked for formatting. 
+> Ignore any warnings displayed by installer for formatting the partitions.
   
   Note: If the installer prompts for unmounting partitions, allow it to unmount. 
   This does not lock the LUKS device that we unlocked in previous step.
