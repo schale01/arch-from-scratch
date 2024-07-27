@@ -64,7 +64,7 @@ Get the names of the blocks
 ```
 $ lsblk
 ```
-## GParted Option
+## GParted option
 
 If starting with ubuntu based distro you can optionally use Gparted for partitioning as it is very easy to use. 
 Start GParted from the Applications menu.
