@@ -1,6 +1,6 @@
-# Setup Guide
+# **Setup Guide**
 
-## WiFi
+# WiFi
 
 Enter iwctl
 
@@ -28,7 +28,7 @@ exit when complete
 exit
 ```
 
-## SSH
+# SSH
 
 Enable sshd (should be done by default)
 
@@ -42,7 +42,7 @@ set a password for the current user
 $ passwd
 ```
 
-## Write random data
+# Write random data
 
 List blocks. In my case, my drives are nvme0n1 and nvme1n1. Your's might be the
 same, or the might be an sdx drive, such as sda or sdb.
@@ -57,14 +57,14 @@ Write random data into your drive.
 $ dd if=/dev/urandom of=/dev/nvme0n1 status=progress bs=4096
 ```
 
-## Partitioning Data
+# Partitioning Data
 
 Get the names of the blocks
 
 ```
 $ lsblk
 ```
-#GParted Option
+## GParted Option
 
 If starting with ubuntu based distro you can optionally use Gparted for partitioning as it is very easy to use. 
 Start GParted from the Applications menu.
@@ -83,6 +83,8 @@ System Partition — Create one big partition to occupy remaining disk space min
 Swap Partition — You can create a swap partition if you wish to. You usually don’t need one if you have atleast 8 GB of RAM. You may see some benefit from having a swap partition if you run applications that use a lot of RAM.
 If over 8 GB RAM 1.5x RAM is reccommended. 
 
+
+## gedit option
 
 ```
 $ gdisk /dev/nvme0n1
@@ -113,7 +115,7 @@ Labelling — Label partitions as shown in screenshot. Set both LABEL and PARTLA
 > Note: PARTLABEL is displayed as Name in GParted
 
 
-## LUKS Setup
+# LUKS Setup
 
 Run the following commands to format system partition. Copy-paste the entire block of commands in a terminal window and hit Enter.
 
@@ -121,7 +123,7 @@ sudo cryptsetup luksFormat /dev/disk/by-partlabel/fwork_system
 sudo cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system   //This will unlock the LUKS partition and map it to /dev/mapper/fwork_system
 
 
-## Filesystems
+# Filesystems
 
 
 
@@ -155,7 +157,7 @@ $ mkfs.btrfs -f /dev/mapper/fwork_system
 ```
 
 
-## Installing Linux Mint 22
+# Installing Linux Mint 22
 
 Boot from the Linux Mint 22 Live USB
 Open a terminal and copy-paste the following commands:
@@ -323,7 +325,7 @@ It also displays boot icons for every kernel it finds on the boot partitions, an
 
 
 
-## Installing Arch
+# Installing Arch
 
 Create subvolume for arch installation
 
