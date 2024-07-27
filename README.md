@@ -2,8 +2,11 @@
 
 
 Resources used 
+
 [Arch Installation Guide](https://wiki.archlinux.org/title/Installation_guide)
-[Arch Linux btrfs instal](Arch Linux btrfs install)
+
+[Arch Linux btrfs install](https://gist.github.com/seraph/05cc841c87e950da4bc36ff1b43cea98)
+
 [Linux Multiboot with BTRFS, LUKS and EFI (Part 2)](https://teejeetech.medium.com/linux-multiboot-with-btrfs-luks-and-efi-part-2-7b0896c03cce)
 
 # WiFi
