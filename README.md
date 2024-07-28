@@ -235,7 +235,8 @@ Chroot to the installed system.
 # cd /mnt/mint
 # groot 
 
-//CHroot 
+//CHroot r
+
 #
 #
 ```
@@ -295,6 +296,8 @@ Run the following commands:
 # nupdate-initramfs -u -k all
 # update-grub
 # grub-install --target=x86_64-efi --efi-directory=/boot/efi /dev/nvme0n1
+//Alt
+# grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 ```
 > Note: This will regenerate the initramfs, update the grub menu, and re-install GRUB to /dev/sda
 
@@ -338,36 +341,27 @@ It also displays boot icons for every kernel it finds on the boot partitions, an
 
 Create subvolume for arch installation
 
+Unlock the LUKS partition and map it to /dev/mapper/fwork_system
+
+```
+# cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system
+```
+
+Create subvolumes for Arch mount points
 ```
 $ sudo mkdir -p /mnt/btrfs
 $ sudo mount /dev/mapper/fwork_system /mnt/btrfs
 $ btrfs subvolume create /mnt/btrfs/@arch
 $ btrfs subvolume create /mnt/btrfs/@arch_home
 ```
-
-remounting the arch partition after reboots if needed 
+## Mounting subvoumes 
 ```
-# cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system 
-# mount -o subvol=@arch /dev/mapper/fwork_system /mnt/arch
-# mount -o subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home
-
-```
-
-
-
-BTRFS on home if exists
-
-```
-$ mkfs.btrfs -L home /dev/mapper/arch-home
+# mount --mkdir -o subvol=@arch /dev/mapper/fwork_system /mnt/arch
+# mount --mkdir -o subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home
+# mount --mkdir /dev/disk/by-partlabel/fwork_boot_arch /mnt/arch/boot
+# mount --mkdir /dev/disk/by-partlabel/fwork_efi /mnt/arch/boot/efi
 ```
 
-Setup swap device
-
-```
-$ mkswap /dev/mapper/arch-swap
-```
-
-## Mounting
 
 Mount swap
 
@@ -470,7 +464,9 @@ install lvm2
 $ pacman -S lvm2
 ```
 
-### Bootloader
+
+
+## Bootloader
 
 Install grub and efibootmgr
 
@@ -478,91 +474,46 @@ Install grub and efibootmgr
 $ pacman -S grub efibootmgr
 ```
 
-Setup grub on efi partition
+### Setup grub on efi partition
+
+Install 
 
 ```
 $ grub-install --efi-directory=/boot/efi
 ```
 
-obtain your lvm partition device UUID
+
 
 ```
-blkid /dev/nvme0n1p3
-```
-
-Copy this to your clipboard
-
-```
-$ nvim /etc/default/grub
+$ nano /etc/default/grub
 ```
 
 Add in the following kernel parameters
 
 ```
-root=/dev/mapper/arch-root cryptdevice=UUID=<uuid>:luks_lvm
+GRUB_CMDLINE_LINUX="cryptdevice=/dev/disk/by-partlabel/fwork_system:fwork_system root=/dev/mapper/fwork_system rootflags=subvol=@arch"
 ```
 
-### Keyfile
-
-```
-$ mkdir /secure
-```
-
-Root keyfile
-```
-$ dd if=/dev/random of=/secure/root_keyfile.bin bs=512 count=8
-```
-
-Home keyfile if home partition exists
-
-```
-$ dd if=/dev/random of=/secure/home_keyfile.bin bs=512 count=8
-```
-
-Change permissions on these
-
-```
-$ chmod 000 /secure/*
-```
-
-Add to partitions
-
-```
-$ cryptsetup luksAddKey /dev/nvme0n1p3 /secure/root_keyfile.bin
-# skip below if using single disk
-$ cryptsetup luksAddKey /dev/nvme1n1p1 /secure/home_keyfile.bin
-```
 
 ```
 $ nvim /etc/mkinitcpio.conf
 ```
 
-```
-FILES=(/secure/root_keyfile.bin)
-```
 
-### Home Partition Crypttab (Skip if single disk)
-
-Get uuid of home partition
-
-```
-$ blkid /dev/nvme1n1p1
-```
+### Home Partition Crypttab
 
 Open up the crypt table.
 ```
 $ nvim /etc/crypttab
 ```
 
-Add in the following line at the bottom of the table
-```
-arch-home      UUID=<uuid>    /secure/home_keyfile.bin
-```
 
 Reload linux
 
 ```
 $ mkinitcpio -p linux
+Alt
+$ mkinitcpio -P
 ```
 
 ## Grub
