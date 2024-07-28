@@ -127,22 +127,21 @@ Labelling — Label partitions as shown in screenshot. Set both LABEL and PARTLA
 # LUKS Setup
 
 Run the following commands to format system partition. Copy-paste the entire block of commands in a terminal window and hit Enter.
-
+```
 sudo cryptsetup luksFormat /dev/disk/by-partlabel/fwork_system 
 sudo cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system   //This will unlock the LUKS partition and map it to /dev/mapper/fwork_system
-
+```
 
 # Filesystems
 
-
-
-Format boot partitions
+Format boot partitions, 
+```
 mkfs.ext4 /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
 mkfs.ext4 /dev/nvme0n1p4
 mkfs.ext4 /dev/nvme0n1p5
 mkfs.ext4 /dev/nvme0n1p6
-
+```
 FAT32 on EFI partiton
 
 ```
@@ -194,9 +193,8 @@ We need to make some changes to the installed system to make it boot successfull
 Mount system partition under /mnt/btrfs
 
 ```
-$ sudo mkdir -p /mnt/btrfs
-$ sudo mount /dev/mapper/fwork_system /mnt/btrfs
-$ cd /mnt/btrfs
+# mount --mkdir /dev/mapper/fwork_system /mnt/btrfs
+# cd /mnt/btrfs
 ```
 Rename subvolumes — Rename \@ and \@home to \@mint and \@mint_home
 ```
