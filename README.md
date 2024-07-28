@@ -288,7 +288,7 @@ fwork_system /dev/disk/by-partlabel/fwork_system none luks,discard
 We need to rebuild the initramfs file for changes we have done above. 
 Run the following commands:
 ```
-# nupdate-initramfs -u -k all
+# update-initramfs -u -k all
 # update-grub
 # grub-install --target=x86_64-efi --efi-directory=/boot/efi /dev/nvme0n1
 //Alt
