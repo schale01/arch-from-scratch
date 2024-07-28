@@ -219,13 +219,10 @@ mp=/mnt/${distname}/boot     && sudo mkdir -p ${mp} && sudo mount /dev/disk/by-p
 mp=/mnt/${distname}/boot/efi && sudo mkdir -p ${mp} && sudo mount /dev/disk/by-partlabel/fwork_efi ${mp}
 ////////////////
 
-# mkdir -p /mnt/mint
-# mount /dev/mapper/fwork_system -o subvol=@mint      /mnt/mint 
-# mount /dev/mapper/fwork_system -o subvol=@mint_home /mnt/mint/home 
-# mkdir -p /mnt/mint/boot
-# mount /dev/disk/by-partlabel/fwork_boot_mint /mnt/mint/boot
-# mkdir -p /mnt/mint/boot/efi
-# mount /dev/disk/by-partlabel/fwork_efi /mnt/mint/boot/efi
+# mount --mkdir /dev/mapper/fwork_system -o subvol=@mint /mnt/mint 
+# mount --mkdir /dev/mapper/fwork_system -o subvol=@mint_home /mnt/mint/home 
+# mount --mkdir /dev/disk/by-partlabel/fwork_boot_mint /mnt/mint/boot
+# mount --mkdir /dev/disk/by-partlabel/fwork_efi /mnt/mint/boot/efi
 ```
 
 Chroot to the installed system.
