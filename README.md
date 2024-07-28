@@ -200,7 +200,17 @@ Rename subvolumes — Rename \@ and \@home to \@mint and \@mint_home
 ```
 # mv -vf @     @mint
 # mv -vf @home @mint_home
-$ cd /mnt/btrfs
+$ ls /mnt/btrfs
+```
+
+Attemping to move to single directory (testing) Works but did not seem to have any benefit.
+```
+btrfs subvolume create /mnt/btrfs/@mint
+# mv -vf @     @mint
+# mv -vf @home @mint
+
+
+ls /mnt/btrfs
 ```
 
 
@@ -240,9 +250,9 @@ Update Initramfs Settings — Run the following block of commands. It will updat
 ****Run in Chrooted terminal
 
 ```
-# echo 'CRYPTROOT=target=fwork_system,source=/dev/disk/by-partlabel/fwork_system' >> /etc/initramfs-tools/conf.d/cryptroot && \
-# echo 'export CRYPTSETUP=y' > /etc/initramfs-tools/conf.d/cryptsetup && \
-# echo "CRYPTSETUP=y" >> /usr/share/initramfs-tools/conf-hooks.d/cryptsetup && \
+# echo 'CRYPTROOT=target=fwork_system,source=/dev/disk/by-partlabel/fwork_system' >> /etc/initramfs-tools/conf.d/cryptroot
+# echo 'export CRYPTSETUP=y' > /etc/initramfs-tools/conf.d/cryptsetup
+# echo "CRYPTSETUP=y" >> /usr/share/initramfs-tools/conf-hooks.d/cryptsetup
 # echo "CRYPTSETUP=y" >> /usr/share/initramfs-tools/conf-hooks.d/forcecryptsetup
 ```
 
