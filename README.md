@@ -82,7 +82,7 @@ Start GParted from the Applications menu.
 Format the entire disk with a GPT partition table. This will delete all existing data and partitions on the disk.
 GParted > Main Menu > Device > Create Partition Table…
 
-EFI System Partition — Create a 512 MB partition formatted as FAT16. 
+EFI System Partition — Create a 512 MB partition formatted as FAT32. 
 Right-click and select Manage Flags. Set the esp and boot flags.
 
 Boot Partitions — Create 2-4 GB boot partitions formatted as EXT4 for each distribution that you want to install. It’s better to create 5–10 boot partitions at the beginning, so that you don’t need to create additional partitions in future.  If you need to have many kernels installed, then increase the size of each partition. If you have the habit of uninstalling older kernels periodically then 2 GB is more than enough.
