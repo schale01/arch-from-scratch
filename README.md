@@ -344,95 +344,68 @@ It also displays boot icons for every kernel it finds on the boot partitions, an
 
 # Installing Arch
 
-Create subvolume for arch installation
-
-Unlock the LUKS partition and map it to /dev/mapper/fwork_system
-
+##Unlock the LUKS partition and map it to /dev/mapper/fwork_system
 ```
-# cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system
+cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system
 ```
 
-Create subvolumes for Arch mount points
+## Create subvolumes for Arch mount points
 ```
-$ sudo mkdir -p /mnt/btrfs
-$ sudo mount /dev/mapper/fwork_system /mnt/btrfs
-$ btrfs subvolume create /mnt/btrfs/@arch
-$ btrfs subvolume create /mnt/btrfs/@arch_home
+mount --mkdir /dev/mapper/fwork_system /mnt/btrfs
 ```
-## Mounting subvoumes 
 ```
-# mount --mkdir -o subvol=@arch /dev/mapper/fwork_system /mnt/arch
-# mount --mkdir -o subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home
-# mount --mkdir /dev/disk/by-partlabel/fwork_boot_arch /mnt/arch/boot
-# mount --mkdir /dev/disk/by-partlabel/fwork_efi /mnt/arch/boot/efi
+btrfs subvolume create /mnt/btrfs/@arch
 ```
-
-
-Mount swap
-
 ```
-$ swapon /dev/mapper/arch-swap
-$ swapon -a
+btrfs subvolume create /mnt/btrfs/@arch_home
 ```
-
-Mount root 
-
+### Mounting subvoumes 
 ```
-$ mount /dev/mapper/arch-root /mnt
+mount --mkdir -o subvol=@arch /dev/mapper/fwork_system /mnt/arch
+```
+```
+mount --mkdir -o subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home
+```
+```
+mount --mkdir /dev/disk/by-partlabel/fwork_boot_arch /mnt/arch/boot
+```
+```
+mount --mkdir /dev/disk/by-partlabel/fwork_efi /mnt/arch/boot/efi
 ```
 
-Create home and boot
+### Mount swap
 
 ```
-$ mkdir -p /mnt/{home,boot}
+swapon /dev/disk/by-partlabel/swap
+```
+```
+swapon -a
 ```
 
-Mount the boot partiton
-
-```
-$ mount /dev/nvme0n1p2 /mnt/boot
-```
-
-Mount the home partition if you have one, otherwise skip this
-
-```
-$ mount /dev/mapper/arch-home /mnt/home
-```
-
-Create the efi directory
-
-```
-$ mkdir /mnt/boot/efi
-```
-
-Mount the EFI directory
-
-```
-$ mount /dev/nvme0n1p1 /mnt/boot/efi
-```
 
 ## Install arch
 
+Without base-devel
 ```
-$ pacstrap -K /mnt base linux linux-firmware
+pacstrap -K /mnt/arch base linux linux-firmware
 ```
 
 With base-devel
 
 ```
-$ pacstrap -K /mnt base base-devel linux linux-firmware
+pacstrap -K /mnt/arch base base-devel linux linux-firmware
 ```
 
-Load the file table
+### Load the file table
 
 ```
-$ genfstab -U -p /mnt > /mnt/etc/fstab
+genfstab -t partlabel -p /mnt/arch > /mnt/arch/etc/fstab
 ```
 
-chroot into your installation
+### chroot into your installation
 
 ```
-$ arch-chroot /mnt /bin/bash
+arch-chroot /mnt/arch /bin/bash
 ```
 
 ## Configuring
@@ -454,16 +427,17 @@ $ pacman -S nano
 Open up mkinitcpio.conf
 
 ```
-$ nvim /etc/mkinitcpio.conf
+nano /etc/mkinitcpio.conf
 ```
 
-add `encrypt` and `lvm2` into the hooks
+add `encrypt` into the hooks
+add `lvm2` into the hooks  // Only needed if using LVM volumes 
 
 ```
 HOOKS=(... block encrypt lvm2 filesystems fsck)
 ```
 
-install lvm2
+install lvm2  // Only needed if using LVM volumes 
 
 ```
 $ pacman -S lvm2
@@ -487,8 +461,6 @@ Install
 $ grub-install --efi-directory=/boot/efi
 ```
 
-
-
 ```
 $ nano /etc/default/grub
 ```
@@ -500,16 +472,11 @@ GRUB_CMDLINE_LINUX="cryptdevice=/dev/disk/by-partlabel/fwork_system:fwork_system
 ```
 
 
-```
-$ nvim /etc/mkinitcpio.conf
-```
-
-
 ### Home Partition Crypttab
 
 Open up the crypt table.
 ```
-$ nvim /etc/crypttab
+$ nano /etc/crypttab
 ```
 
 
@@ -527,7 +494,7 @@ Create grub config
 
 ```
 $ grub-mkconfig -o /boot/grub/grub.cfg
-$ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+$ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg  //skip
 ```
 
 ## System Configuration
