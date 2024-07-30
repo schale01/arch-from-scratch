@@ -415,11 +415,11 @@ arch-chroot /mnt/arch /bin/bash
 Install a text editor
 
 ```
-$ pacman -S neovim
+pacman -S neovim
 ```
 
 ```
-$ pacman -S nano
+pacman -S nano
 ```
 
 ### Decrypting volumes
@@ -450,7 +450,7 @@ $ pacman -S lvm2
 Install grub and efibootmgr
 
 ```
-$ pacman -S grub efibootmgr
+pacman -S grub efibootmgr
 ```
 
 ### Setup grub on efi partition
@@ -458,7 +458,7 @@ $ pacman -S grub efibootmgr
 Install 
 
 ```
-$ grub-install --efi-directory=/boot/efi
+grub-install --efi-directory=/boot/efi
 ```
 
 ```
@@ -493,8 +493,8 @@ $ mkinitcpio -P
 Create grub config
 
 ```
-$ grub-mkconfig -o /boot/grub/grub.cfg
-$ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg  //skip
+grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg  //skip
 ```
 
 ## System Configuration
@@ -528,7 +528,7 @@ Enable timesyncd
 ### Locale
 
 ```
-$ nvim /etc/locale.gen
+$ nano /etc/locale.gen
 ```
 
 uncomment the UTF8 lang you want
@@ -538,7 +538,7 @@ en_US.UTF-8 UTF-8
 ```
 
 ```
-$ locale-gen
+locale-gen
 ```
 
 ```
@@ -593,7 +593,7 @@ $ passwd user
 Add the wheel group to sudoers
 
 ```
-$ EDITOR=nvim visudo
+$ EDITOR=nano visudo
 ```
 
 ```
@@ -603,8 +603,8 @@ $ EDITOR=nvim visudo
 ### Network Connectivity
 
 ```
-$ pacman -S networkmanager
-$ systemctl enable NetworkManager
+pacman -S networkmanager
+systemctl enable NetworkManager
 ```
 
 ### Display Manager
