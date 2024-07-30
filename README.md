@@ -575,19 +575,19 @@ $ passwd
 Then install the shell you want
 
 ```
-$ pacman -S zsh
+pacman -S zsh
 ```
 
 Add a new user as follows
 
 ```
-$ useradd -m -G wheel -s /bin/zsh user
+useradd -m -G wheel -s /bin/zsh user
 ```
 
 set the password on the user
 
 ```
-$ passwd user
+passwd user
 ```
 
 Add the wheel group to sudoers
@@ -595,7 +595,6 @@ Add the wheel group to sudoers
 ```
 $ EDITOR=nano visudo
 ```
-
 ```
 %wheel ALL=(ALL:ALL) ALL
 ```
@@ -604,17 +603,19 @@ $ EDITOR=nano visudo
 
 ```
 pacman -S networkmanager
+```
+```
 systemctl enable NetworkManager
 ```
 
 ### Display Manager
 
 ```
-$ pacman -S gnome
+pacman -S gnome
 ```
 
 ```
-$ systemctl enable gdm
+systemctl enable gdm
 ```
 
 
