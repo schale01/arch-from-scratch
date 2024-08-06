@@ -344,7 +344,72 @@ It also displays boot icons for every kernel it finds on the boot partitions, an
 
 # Installing Arch
 
-##Unlock the LUKS partition and map it to /dev/mapper/fwork_system
+## Install sscript
+```
+#!/bin/bash
+
+cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system # Opens the encrypted btrfs volume
+mount --mkdir /dev/mapper/fwork_system /mnt/btrfs #Mounts volume to  /mnt/btrfs
+btrfs subvolume create /mnt/btrfs/@arch     
+btrfs subvolume create /mnt/btrfs/@arch_home  
+mount --mkdir -o noatime,compress=lzo,space_cache=v2,subvol=@arch /dev/mapper/fwork_system /mnt/arch  #Mounts @arch subvolume to /mnt/arch  this will be our root install directory
+mount --mkdir -o noatime,compress=lzo,space_cache=v2,subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home  #Mounts @arch_home to /mnt/arch/home
+mount --mkdir /dev/disk/by-partlabel/fwork_boot_arch /mnt/arch/boot
+mount --mkdir /dev/disk/by-partlabel/fwork_efi /mnt/arch/boot/efi
+swapon /dev/disk/by-partlabel/swap
+swapon -a
+pacstrap -K /mnt/arch base base-devel linux linux-firmware sof-firmware grub efibootmgr nano networkmanager
+genfstab -t partlabel -p /mnt/arch > /mnt/arch/etc/fstab
+arch-chroot /mnt/arch /bin/bash
+read -p "Add encrpt into hooks"
+nano /etc/mkinitcpio.conf
+echo "Installing boot loader"
+grub-install --efi-directory=/boot/efi
+echo 'Update the following line in /etc/default/grub'
+echo 'GRUB_CMDLINE_LINUX="cryptdevice=/dev/disk/by-partlabel/fwork_system:fwork_system root=/dev/mapper/fwork_system rootflags=subvol=@arch"'
+sed -i 's% GRUB_CMDLINE_LINUX=""%GRUB_CMDLINE_LINUX="cryptdevice=/dev/disk/by-partlabel/fwork_system:fwork_system root=/dev/mapper/fwork_system rootflags=subvol=@arch"%' /etc/default/grub
+mkinitcpio -p linux
+grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+
+#echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+locale-gen
+#echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+read -p 'Enter the hostname of the machine: ' hostname
+echo $hostname > /etc/hostname
+echo "Set Root password"
+passwd
+pacman -S bash
+read -p "Enter username: " username
+useradd -m -G wheel -s /bin/zsh $username
+echo "Set password for user"
+password $username
+
+# Add user to Wheel group to wheel group to sudoers
+read "Uncomment the line '%wheel ALL=(ALL:ALL) ALL' to add wheel group to sudoers"
+EDITOR=nano visudo
+visudo
+systemctl enable NetworkManager
+
+read -p "Enter 1 to install amd microcode, enter 2 to install intel micro code, enter 3 to not install either: " microcode
+
+if [$microcode = 1]; then
+  pacman -S amd-ucode
+fi
+if [$microcode = 2]; then
+  pacman -S intel-ucode
+fi
+
+
+grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+```
+
+
+# Step by step
+
+
+## Unlock the LUKS partition and map it to /dev/mapper/fwork_system
 ```
 cryptsetup luksOpen /dev/disk/by-partlabel/fwork_system fwork_system
 ```
@@ -361,10 +426,10 @@ btrfs subvolume create /mnt/btrfs/@arch_home
 ```
 ### Mounting subvoumes 
 ```
-mount --mkdir -o subvol=@arch /dev/mapper/fwork_system /mnt/arch
+mount --mkdir -o noatime,compress=lzo,space_cache=v2,subvol=@arch /dev/mapper/fwork_system /mnt/arch
 ```
 ```
-mount --mkdir -o subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home
+mount --mkdir -o noatime,compress=lzo,space_cache=v2,subvol=@arch_home /dev/mapper/fwork_system /mnt/arch/home
 ```
 ```
 mount --mkdir /dev/disk/by-partlabel/fwork_boot_arch /mnt/arch/boot
@@ -385,15 +450,15 @@ swapon -a
 
 ## Install arch
 
-Without base-devel
+Base only
 ```
 pacstrap -K /mnt/arch base linux linux-firmware
 ```
 
-With base-devel
+With base-devel and additonal pacakges
 
 ```
-pacstrap -K /mnt/arch base base-devel linux linux-firmware
+pacstrap -K /mnt/arch base base-devel linux linux-firmware sof-firmware grub efibootmgr nano networkmanager
 ```
 
 ### Load the file table
@@ -412,7 +477,7 @@ arch-chroot /mnt/arch /bin/bash
 
 ### Text Editor
 
-Install a text editor
+Install a text editor  (skip if already installed) 
 
 ```
 pacman -S neovim
@@ -447,7 +512,7 @@ $ pacman -S lvm2
 
 ## Bootloader
 
-Install grub and efibootmgr
+Install grub and efibootmgr (skip if already installed) 
 
 ```
 pacman -S grub efibootmgr
@@ -601,6 +666,7 @@ $ EDITOR=nano visudo
 
 ### Network Connectivity
 
+Install Network manager   (skip if already installed) 
 ```
 pacman -S networkmanager
 ```
