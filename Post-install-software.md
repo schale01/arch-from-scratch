@@ -63,6 +63,10 @@ apt install lutris
 ```
 apt install proton-mail
 ```
+### Scribus 
+```
+apt install scribus
+```
 ### Solaar
 ```
 apt install Solaar
@@ -77,5 +81,5 @@ apt install vlc
 ```
 ## Canva/Microsoft Publisher/Adobe Indesign
 
-### Scribus 
+
 ### Penpot  https://penpot.app
