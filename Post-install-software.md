@@ -27,5 +27,6 @@ Inkscape
 Gimp 
 
 #Replacements for Canva/Microsoft Publisher/Adobe Indesign
-Scribus 
-Penpot  https://penpot.app
+
+-Scribus 
+-Penpot  https://penpot.app
