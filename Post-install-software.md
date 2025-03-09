@@ -1,15 +1,10 @@
 #Post inatallation software
 
 
-### Bitwarden
+### Bitwarden  https://bitwarden.com/download/
 ```
 flatpak install flathub com.bitwarden.desktop
 ```
-```
-https://bitwarden.com/download/
-```
-
-
 ### Lutris 
 ```
 apt install  lutris
