@@ -1,7 +1,7 @@
 #Post inatallation software
 
-#Flatpak installed software
-Bitwarden #Flatpak intall
+
+### Bitwarden
 ```
 flatpak install flathub com.bitwarden.desktop
 ```
@@ -10,35 +10,35 @@ https://bitwarden.com/download/
 ```
 
 
-Lutris 
+### Lutris 
 ```
 apt install  lutris
  or
 flatpak install
 ```
 
-Proton
+### Proton
 ```
 https://account.proton.me/u/1/mail/get-the-apps
 ```
 
-Steam
+### Steam
 
-CudaText  https://github.com/Alexey-T/CudaText
+### CudaText  https://github.com/Alexey-T/CudaText
 
-Discord
+### Discord
 
-VLC
+### VLC
 
-Opera
+### Opera
 
-Libra Office
+### Libra Office
 
-Inkscape
+### Inkscape
 
-Gimp 
+### Gimp 
 
-#Replacements for Canva/Microsoft Publisher/Adobe Indesign
+### Replacements for Canva/Microsoft Publisher/Adobe Indesign
 
 -Scribus <br>
 -Penpot  https://penpot.app
