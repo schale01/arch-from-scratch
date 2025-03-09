@@ -1,4 +1,5 @@
-#Post inatallation software
+# Post inatallation software
+
 # Flatpak Software
 
 ## Batch install all Flatpacks
