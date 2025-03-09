@@ -1,6 +1,12 @@
 #Post inatallation software
 
+#Flatpak installed software
 Bitwarden #Flatpak intall
+```
+https://flathub.org/apps/com.bitwarden.desktop
+
+https://bitwarden.com/download/
+```
 
 
 Lutris 
@@ -8,6 +14,11 @@ Lutris
 apt install  lutris
  or
 flatpak install
+```
+
+Proton
+```
+https://account.proton.me/u/1/mail/get-the-apps
 ```
 
 Steam
