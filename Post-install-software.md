@@ -3,8 +3,9 @@
 #Flatpak installed software
 Bitwarden #Flatpak intall
 ```
-https://flathub.org/apps/com.bitwarden.desktop
-
+flatpak install flathub com.bitwarden.desktop
+```
+```
 https://bitwarden.com/download/
 ```
 
