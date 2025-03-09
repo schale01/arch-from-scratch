@@ -1,10 +1,54 @@
 #Post inatallation software
+# Flatpak Software
+
+## Batch install all Flatpacks
+```
+flatpak install flathub com.bitwarden.desktop flathub com.discordapp.Discord com.opera.Opera com.protonvpn.www
 
 
+```
 ### Bitwarden  https://bitwarden.com/download/
 ```
 flatpak install flathub com.bitwarden.desktop
 ```
+### Discord
+```
+flatpak install flathub com.discordapp.Discord
+```
+### Opera
+```
+flatpak install flathub com.opera.Opera
+```
+
+### Proton VPN
+```
+flatpak install flathub com.protonvpn.www
+```
+
+### CudaText  https://github.com/Alexey-T/CudaText
+
+
+
+
+
+
+
+### Libra Office
+
+### Inkscape
+
+
+
+
+# System Packages
+
+## Batch install
+
+
+### Blender
+
+### Gimp 
+
 ### Lutris 
 ```
 apt install  lutris
@@ -12,28 +56,18 @@ apt install  lutris
 flatpak install
 ```
 
-### Proton
+### Proton Mail
 ```
 https://account.proton.me/u/1/mail/get-the-apps
 ```
 
+### Solaar
+
 ### Steam
-
-### CudaText  https://github.com/Alexey-T/CudaText
-
-### Discord
 
 ### VLC
 
-### Opera
+## Canva/Microsoft Publisher/Adobe Indesign
 
-### Libra Office
-
-### Inkscape
-
-### Gimp 
-
-### Replacements for Canva/Microsoft Publisher/Adobe Indesign
-
--Scribus <br>
--Penpot  https://penpot.app
+### Scribus 
+### Penpot  https://penpot.app
