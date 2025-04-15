@@ -34,10 +34,8 @@ flatpak install flathub com.protonvpn.www
 
 ## Batch install
 ```
-apt install blender gimp inkscape libreoffice lutris proton-mail Solaar steam vlc
-
+apt install blender gimp inkscape libreoffice lutris Solaar steam vlc btop
 ```
-
 
 ### Blender
 ```
@@ -59,10 +57,7 @@ apt install libreoffice
 ```
 apt install lutris
 ```
-### Proton Mail  https://account.proton.me/u/1/mail/get-the-apps
-```
-apt install proton-mail
-```
+
 ### Scribus 
 ```
 apt install scribus
@@ -79,6 +74,15 @@ apt install steam
 ```
 apt install vlc
 ```
+## Local Apps
+
+### Proton Mail  https://account.proton.me/u/1/mail/get-the-apps
+```
+apt install proton-mail
+```
+
+
+
 ## Canva/Microsoft Publisher/Adobe Indesign
 
 
